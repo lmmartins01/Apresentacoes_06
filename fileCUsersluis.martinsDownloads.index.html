@@ -1,0 +1,1234 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+<meta charset="utf-8">
+<title>USF · Adequação de MCDT — sessão clínica</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/dist/reset.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/dist/reveal.css">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,800;9..144,900&family=Inter+Tight:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+
+<style>
+  :root{
+    /* Paleta Contemporânea — Cobalto + Âmbar Dourado (versão chamativa) */
+    --navy-900:#0a1342;     /* cobalto profundo — fundos dramáticos */
+    --navy-800:#142060;     /* cobalto escuro */
+    --navy-700:#1f2e85;     /* cobalto intenso */
+    --navy-600:#2a3eb8;     /* cobalto vivo */
+    --blue-500:#3b5bdb;     /* cobalto elétrico — acento principal azul */
+    --blue-300:#8aa4ff;     /* cobalto luminoso */
+    --blue-100:#dfe6ff;     /* cobalto pastel */
+
+    /* Âmbar para fundos vibrantes / grandes */
+    --orange-500:#f59e0b;   /* âmbar quente — botões, fundos */
+    --orange-400:#fbbf24;   /* âmbar luminoso — destaques sobre escuro */
+    --orange-300:#fcd34d;   /* dourado sobre cobalto */
+    --orange-100:#fef3c7;   /* âmbar pastel para callouts */
+
+    /* Âmbar escuro para texto sobre fundo claro (contraste AA) */
+    --orange-700:#92400e;   /* âmbar tostado — texto sobre claro */
+    --orange-600:#b45309;   /* laranja-queimado — eyebrow, ênfases */
+
+    --paper:#fbf9f3;        /* papel quente cremoso */
+    --paper-2:#f3eedc;      /* areia clara */
+    --ink:#0a1342;
+    --ink-soft:#2a3568;
+    --muted:#6b7280;
+    --grid:rgba(10,19,66,.06);
+  }
+
+  html,body{background:var(--paper);}
+  .reveal{
+    font-family:'Inter Tight', system-ui, sans-serif;
+    color:var(--ink);
+    font-weight:400;
+    letter-spacing:-.005em;
+    font-size:1.25em;  /* +25% no corpo (títulos compensados abaixo) */
+  }
+  .reveal .slides{text-align:left;}
+  .reveal .slides section{
+    height:100%;
+    padding:48px 64px;
+    box-sizing:border-box;
+  }
+
+  /* Tipografia */
+  .reveal h1,.reveal h2,.reveal h3{
+    font-family:'Fraunces', Georgia, serif;
+    font-weight:800;
+    color:var(--navy-900);
+    letter-spacing:-.025em;
+    line-height:1.02;
+    text-transform:none;
+    margin:0 0 .4em 0;
+  }
+  .reveal h1{font-size:3.04em; font-variation-settings:"opsz" 144;}    /* 3.8/1.25 — preserva tamanho original */
+  .reveal h2{font-size:1.92em; font-variation-settings:"opsz" 96;}     /* 2.4/1.25 */
+  .reveal h3{font-size:1.2em; font-variation-settings:"opsz" 48;}      /* 1.5/1.25 */
+  .reveal p{font-size:1.05em; line-height:1.5;}
+
+  .eyebrow{
+    display:inline-block;
+    font-family:'JetBrains Mono', monospace;
+    font-size:.62em;
+    font-weight:600;
+    letter-spacing:.18em;
+    text-transform:uppercase;
+    color:var(--orange-600);
+    margin-bottom:.6em;
+    padding:.35em .8em;
+    border:1px solid var(--orange-500);
+    border-radius:2px;
+  }
+  .lede{
+    font-size:1.4em;
+    line-height:1.4;
+    color:var(--ink-soft);
+    font-weight:400;
+    max-width:22ch;
+  }
+  .small{font-size:.78em; color:var(--muted);}
+  .mono{font-family:'JetBrains Mono', monospace;}
+
+  /* Acentos */
+  .orange{color:var(--orange-600); font-weight:700;}
+  .navy{color:var(--navy-900); font-weight:700;}
+  .strike{
+    background:linear-gradient(180deg, transparent 62%, var(--orange-300) 62%, var(--orange-300) 88%, transparent 88%);
+    padding:0 .15em;
+  }
+
+  /* Layout patterns */
+  .grid-2{
+    display:grid;
+    grid-template-columns: 1fr 1fr;
+    gap:48px;
+    align-items:start;
+    height:calc(100% - 80px);
+  }
+  .grid-2-tight{
+    display:grid;
+    grid-template-columns: 1fr 1fr;
+    gap:32px;
+    align-items:start;
+  }
+  .grid-3{display:grid; grid-template-columns:repeat(3,1fr); gap:24px;}
+  .grid-4{display:grid; grid-template-columns:repeat(4,1fr); gap:20px;}
+
+  /* Background decorativo */
+  .bg-grid{
+    position:absolute; inset:0;
+    background-image:
+      linear-gradient(var(--grid) 1px, transparent 1px),
+      linear-gradient(90deg, var(--grid) 1px, transparent 1px);
+    background-size:48px 48px;
+    pointer-events:none;
+    z-index:0;
+  }
+
+  /* Slide número 1 — capa */
+  .cover{
+    background: var(--navy-900);
+    color:var(--paper);
+    position:relative;
+    overflow:hidden;
+  }
+  .cover::before{
+    content:"";
+    position:absolute;
+    top:-200px; right:-200px;
+    width:800px; height:800px;
+    background:radial-gradient(circle, var(--orange-500) 0%, transparent 60%);
+    opacity:.35;
+    pointer-events:none;
+  }
+  .cover::after{
+    content:"";
+    position:absolute;
+    bottom:-300px; left:-200px;
+    width:700px; height:700px;
+    background:radial-gradient(circle, var(--blue-500) 0%, transparent 60%);
+    opacity:.4;
+    pointer-events:none;
+  }
+  .cover h1{
+    color:var(--paper);
+    font-size:4.16em;  /* 5.2/1.25 */
+    line-height:.95;
+    margin-bottom:.25em;
+  }
+  .cover h1 em{
+    font-style:italic;
+    color:var(--orange-400);
+    font-weight:900;
+  }
+  .cover .meta{
+    font-family:'JetBrains Mono', monospace;
+    font-size:.7em;
+    letter-spacing:.15em;
+    text-transform:uppercase;
+    color:var(--blue-300);
+    margin-bottom:2em;
+  }
+  .cover .meta span{color:var(--orange-400);}
+  .cover .footer{
+    position:absolute;
+    bottom:48px; left:64px; right:64px;
+    display:flex; justify-content:space-between;
+    align-items:flex-end;
+    font-family:'JetBrains Mono', monospace;
+    font-size:.65em;
+    letter-spacing:.1em;
+    text-transform:uppercase;
+    color:var(--blue-300);
+  }
+  .cover .footer .num{
+    font-size:4.8em;  /* 6/1.25 */
+    font-family:'Fraunces', serif;
+    color:var(--orange-500);
+    line-height:.8;
+    font-weight:900;
+  }
+
+  /* Cards e caixas */
+  .card{
+    background:white;
+    border:1px solid var(--navy-700);
+    border-left:6px solid var(--orange-500);
+    padding:24px 28px;
+    border-radius:2px;
+    position:relative;
+  }
+  .card-dark{
+    background:var(--navy-900);
+    color:var(--paper);
+    padding:28px 32px;
+    border-radius:2px;
+    position:relative;
+  }
+  .card-dark h3{color:var(--orange-400);}
+  .card-blue{
+    background:var(--blue-500);
+    color:white;
+    padding:24px 28px;
+    border-radius:2px;
+  }
+  .card-orange{
+    background:var(--orange-500);
+    color:white;
+    padding:24px 28px;
+    border-radius:2px;
+  }
+
+  /* Quote / mensagens fortes */
+  .pull-quote{
+    font-family:'Fraunces', serif;
+    font-size:1.92em;  /* 2.4/1.25 */
+    line-height:1.1;
+    font-weight:600;
+    font-style:italic;
+    color:var(--navy-900);
+    border-left:6px solid var(--orange-500);
+    padding-left:32px;
+    max-width:24ch;
+  }
+  .pull-quote .accent{color:var(--orange-600); font-weight:800; font-style:normal;}
+
+  /* KPI gigantes */
+  .kpi{
+    display:flex; flex-direction:column;
+    align-items:flex-start;
+  }
+  .kpi-num{
+    font-family:'Fraunces', serif;
+    font-size:5.6em;  /* 7/1.25 */
+    font-weight:900;
+    line-height:.85;
+    color:var(--orange-600);
+    font-variation-settings:"opsz" 144;
+  }
+  .kpi-num.navy{color:var(--navy-900);}
+  .kpi-label{
+    font-family:'JetBrains Mono', monospace;
+    font-size:.7em;
+    letter-spacing:.12em;
+    text-transform:uppercase;
+    color:var(--ink-soft);
+    margin-top:.5em;
+  }
+  .kpi-desc{
+    font-size:.95em;
+    color:var(--ink-soft);
+    margin-top:.4em;
+    line-height:1.4;
+  }
+
+  /* Listas */
+  .reveal ul{list-style:none; padding-left:0;}
+  .reveal ul li{
+    position:relative;
+    padding-left:28px;
+    margin-bottom:14px;
+    line-height:1.5;
+    font-size:1em;
+  }
+  .reveal ul li::before{
+    content:"→";
+    position:absolute;
+    left:0;
+    color:var(--orange-500);
+    font-weight:700;
+  }
+  ul.check li::before{content:"✓"; color:#16a34a;}
+  ul.cross li::before{content:"✗"; color:var(--orange-600);}
+  ul.num{counter-reset:item;}
+  ul.num li{counter-increment:item; padding-left:36px;}
+  ul.num li::before{
+    content:counter(item, decimal-leading-zero);
+    font-family:'JetBrains Mono', monospace;
+    font-size:.75em;
+    font-weight:700;
+    background:var(--orange-500);
+    color:white;
+    padding:2px 6px;
+    border-radius:2px;
+    top:5px;
+  }
+
+  /* Tabelas */
+  .reveal table{
+    width:100%;
+    border-collapse:collapse;
+    font-size:.78em;
+    margin-top:18px;
+  }
+  .reveal table thead th{
+    background:var(--navy-900);
+    color:var(--paper);
+    text-align:left;
+    padding:12px 14px;
+    font-family:'Inter Tight', sans-serif;
+    font-weight:700;
+    letter-spacing:.02em;
+    border:none;
+  }
+  .reveal table tbody td{
+    padding:12px 14px;
+    border-bottom:1px solid #e5e7eb;
+    vertical-align:top;
+    line-height:1.4;
+  }
+  .reveal table tbody tr:nth-child(even){background:var(--paper-2);}
+  .reveal table tbody tr:hover{background:var(--blue-100);}
+  .reveal table .em{font-weight:700; color:var(--orange-600);}
+
+  /* Cabeçalho de slide */
+  .slide-head{
+    display:flex;
+    justify-content:space-between;
+    align-items:flex-start;
+    margin-bottom:24px;
+    padding-bottom:16px;
+    border-bottom:2px solid var(--navy-900);
+  }
+  .slide-head .case-tag{
+    font-family:'JetBrains Mono', monospace;
+    font-size:.62em;
+    letter-spacing:.18em;
+    text-transform:uppercase;
+    color:var(--orange-600);
+    font-weight:600;
+  }
+  .slide-num{
+    font-family:'JetBrains Mono', monospace;
+    font-size:.7em;
+    color:var(--muted);
+    letter-spacing:.1em;
+  }
+
+  /* Bar chart simples (CSS) */
+  .bar-chart{display:flex; flex-direction:column; gap:14px; margin-top:12px;}
+  .bar-row{display:grid; grid-template-columns: 160px 1fr 80px; align-items:center; gap:16px;}
+  .bar-label{font-family:'JetBrains Mono', monospace; font-size:.7em; color:var(--ink-soft); text-transform:uppercase; letter-spacing:.05em;}
+  .bar-track{height:32px; background:var(--paper-2); border-radius:2px; overflow:hidden; position:relative;}
+  .bar-fill{height:100%; background:var(--orange-500); border-radius:2px; transition:width 1.4s cubic-bezier(.2,.8,.2,1);}
+  .bar-fill.blue{background:var(--blue-500);}
+  .bar-fill.navy{background:var(--navy-900);}
+  .bar-value{font-family:'JetBrains Mono', monospace; font-size:.85em; font-weight:700; color:var(--navy-900);}
+
+  /* Ratio visualization */
+  .ratio-viz{display:flex; align-items:center; gap:24px; margin:24px 0;}
+  .ratio-box{
+    background:white;
+    border:2px solid var(--navy-900);
+    padding:18px 24px;
+    border-radius:2px;
+    text-align:center;
+    min-width:140px;
+  }
+  .ratio-box .big{font-family:'Fraunces',serif; font-size:2.4em; font-weight:900; color:var(--navy-900); line-height:1;}  /* 3/1.25 */
+  .ratio-box.bad .big{color:var(--orange-600);}
+  .ratio-box.good{background:var(--navy-900); color:white; border-color:var(--navy-900);}
+  .ratio-box.good .big{color:var(--orange-400);}
+  .ratio-box .lbl{font-family:'JetBrains Mono', monospace; font-size:.65em; letter-spacing:.1em; text-transform:uppercase; margin-top:6px; color:var(--ink-soft);}
+  .ratio-box.good .lbl{color:var(--blue-300);}
+  .ratio-arrow{font-size:2em; color:var(--orange-500);}
+
+  /* Slide de transição */
+  .transition-slide{
+    background:var(--navy-900);
+    color:var(--paper);
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    position:relative;
+    overflow:hidden;
+  }
+  .transition-slide::before{
+    content:"";
+    position:absolute;
+    width:600px; height:600px;
+    border-radius:50%;
+    background:radial-gradient(circle, var(--orange-500) 0%, transparent 70%);
+    opacity:.3;
+    top:-100px; right:-100px;
+    pointer-events:none;
+  }
+  .transition-slide h1{color:var(--paper); font-size:4em;}  /* 5/1.25 */
+  .transition-slide h1 em{color:var(--orange-400); font-style:italic;}
+  .transition-slide .case-mega{
+    font-family:'JetBrains Mono', monospace;
+    color:var(--orange-400);
+    font-size:.8em;
+    letter-spacing:.25em;
+    margin-bottom:1em;
+  }
+
+  /* Slide red flags */
+  .red-flags{display:grid; grid-template-columns:1fr 1fr; gap:16px; margin-top:14px;}
+  .flag{
+    background:white;
+    border-left:5px solid var(--orange-500);
+    padding:14px 18px;
+    border-radius:2px;
+    font-size:.85em;
+  }
+  .flag strong{display:block; color:var(--navy-900); margin-bottom:4px; font-size:1.05em;}
+  .flag.urgent{border-left-color:#dc2626; background:#fef2f2;}
+  .flag.urgent strong{color:#991b1b;}
+
+  /* Number line / lifeline */
+  .lifeline{
+    position:relative;
+    margin:50px 0 30px;
+    padding:0 20px;
+  }
+  .lifeline-bar{
+    height:8px;
+    background:linear-gradient(90deg, #16a34a 0%, var(--orange-500) 70%, #dc2626 100%);
+    border-radius:4px;
+    position:relative;
+  }
+  .lifeline-mark{
+    position:absolute;
+    top:-8px;
+    width:24px; height:24px;
+    background:var(--navy-900);
+    border-radius:50%;
+    border:4px solid white;
+    box-shadow:0 0 0 2px var(--navy-900);
+    transform:translateX(-50%);
+  }
+  .lifeline-label{
+    position:absolute;
+    top:30px;
+    transform:translateX(-50%);
+    font-family:'JetBrains Mono', monospace;
+    font-size:.65em;
+    text-transform:uppercase;
+    letter-spacing:.08em;
+    color:var(--ink-soft);
+    white-space:nowrap;
+    text-align:center;
+    width:120px;
+    margin-left:-60px;
+  }
+  .lifeline-label strong{display:block; color:var(--navy-900); font-size:1.3em; margin-bottom:2px;}
+
+  /* Roadmap steps */
+  .steps{display:grid; grid-template-columns:repeat(5,1fr); gap:12px; margin-top:18px;}
+  .step{
+    background:white;
+    border:1px solid #e5e7eb;
+    padding:14px 12px;
+    border-radius:2px;
+    position:relative;
+  }
+  .step .step-num{
+    font-family:'Fraunces', serif;
+    font-size:1.76em;  /* 2.2/1.25 */
+    font-weight:900;
+    color:var(--orange-500);
+    line-height:.9;
+  }
+  .step .step-title{
+    font-weight:700;
+    color:var(--navy-900);
+    margin-top:8px;
+    font-size:.85em;
+    line-height:1.25;
+  }
+  .step .step-desc{font-size:.72em; color:var(--ink-soft); margin-top:4px; line-height:1.3;}
+
+  /* Closing slide */
+  .closing{
+    background:var(--navy-900);
+    color:var(--paper);
+    position:relative;
+    overflow:hidden;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+  }
+  .closing::before{
+    content:"";
+    position:absolute;
+    inset:0;
+    background:
+      radial-gradient(ellipse at 80% 20%, var(--orange-500) 0%, transparent 50%),
+      radial-gradient(ellipse at 10% 90%, var(--blue-500) 0%, transparent 50%);
+    opacity:.3;
+    pointer-events:none;
+  }
+  .closing h1{color:var(--paper); font-size:4em;}  /* 5/1.25 */
+  .closing h1 em{color:var(--orange-400); font-style:italic;}
+  .closing .sig{
+    font-family:'JetBrains Mono', monospace;
+    font-size:.75em;
+    letter-spacing:.15em;
+    text-transform:uppercase;
+    color:var(--blue-300);
+    margin-top:2em;
+  }
+
+  /* Tip box */
+  .tip{
+    background:var(--orange-100);
+    border-left:5px solid var(--orange-500);
+    padding:16px 20px;
+    border-radius:2px;
+    font-size:.92em;
+    margin-top:14px;
+  }
+  .tip strong{color:var(--orange-700);}
+
+  /* Animação de entrada para barras */
+  section.present .bar-fill{
+    width:var(--bar-w, 0%);
+  }
+
+  /* Progress bar custom */
+  .reveal .progress{
+    color:var(--orange-500);
+    height:4px;
+  }
+
+  /* Print-friendly */
+  @media print{
+    html, body{background:white;}
+  }
+</style>
+</head>
+
+<body>
+<div class="reveal">
+<div class="slides">
+
+<!-- ============================================================ -->
+<!-- SLIDE 1 — CAPA -->
+<!-- ============================================================ -->
+<section class="cover">
+  <div class="meta">USF · Sessão Clínica · <span>2026</span></div>
+  <h1>Pedimos<br><em>demasiado.</em></h1>
+  <p class="lede" style="color:var(--blue-300); max-width:30ch; margin-top:1em;">
+    Quatro casos, uma cultura, um plano para mudar a forma como pedimos MCDT.
+  </p>
+  <div class="footer">
+    <div>
+      <div>Adequação de MCDT em CSP</div>
+      <div style="color:var(--orange-400); margin-top:6px;">Da evidência à prática</div>
+    </div>
+    <div class="num">01</div>
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- SLIDE 2 — Provocação inicial -->
+<!-- ============================================================ -->
+<section>
+  <div class="slide-head">
+    <div>
+      <div class="case-tag">A pergunta que abre tudo</div>
+    </div>
+    <div class="slide-num">02 / 20</div>
+  </div>
+  <div style="display:flex; align-items:center; height:80%;">
+    <div class="pull-quote">
+      Se cada exame que pedíssemos<br>
+      tivesse de <span class="accent">salvar uma vida</span>,<br>
+      pediríamos os mesmos?
+    </div>
+  </div>
+  <p class="small" style="position:absolute; bottom:48px; left:64px;">
+    Nem todos os exames são neutros. Cada pedido tem um custo: tempo, ansiedade, irradiação, cascata.
+  </p>
+</section>
+
+<!-- ============================================================ -->
+<!-- SLIDE 3 — A paisagem: 4 casos -->
+<!-- ============================================================ -->
+<section>
+  <div class="slide-head">
+    <div>
+      <span class="eyebrow">Diagnóstico interno</span>
+      <h2>O que detetámos<br>na nossa USF</h2>
+    </div>
+    <div class="slide-num">03 / 20</div>
+  </div>
+
+  <div class="grid-4" style="margin-top:32px;">
+    <div class="card">
+      <div class="mono small" style="color:var(--orange-600); font-weight:600;">CASO 01</div>
+      <div class="kpi-num" style="font-size:3.2em; margin-top:8px;">919</div>
+      <div class="kpi-label">Vitamina D</div>
+      <p class="small" style="margin-top:10px;">Doseamentos em assintomáticos / queixas inespecíficas.</p>
+    </div>
+    <div class="card">
+      <div class="mono small" style="color:var(--orange-600); font-weight:600;">CASO 02</div>
+      <div class="kpi-num" style="font-size:3.2em; margin-top:8px;">279</div>
+      <div class="kpi-label">TC Lombar</div>
+      <p class="small" style="margin-top:10px;">Lombalgias agudas sem sinais de alarme.</p>
+    </div>
+    <div class="card">
+      <div class="mono small" style="color:var(--orange-600); font-weight:600;">CASO 03</div>
+      <div class="kpi-num" style="font-size:3.2em; margin-top:8px;">2.255</div>
+      <div class="kpi-label">FT4</div>
+      <p class="small" style="margin-top:10px;">Pedidos em paralelo à TSH como rastreio.</p>
+    </div>
+    <div class="card">
+      <div class="mono small" style="color:var(--orange-600); font-weight:600;">CASO 04</div>
+      <div class="kpi-num" style="font-size:3.2em; margin-top:8px;">1.446</div>
+      <div class="kpi-label">PSA</div>
+      <p class="small" style="margin-top:10px;">Anual em &gt;75a ou sem decisão partilhada.</p>
+    </div>
+  </div>
+
+  <div class="tip" style="margin-top:36px;">
+    <strong>Nota da coordenação:</strong> estes números não são uma acusação. São um espelho.
+    Refletem padrões coletivos — não falhas individuais.
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- SLIDE 4 — Conceitos-chave -->
+<!-- ============================================================ -->
+<section>
+  <div class="slide-head">
+    <div>
+      <span class="eyebrow">Vocabulário comum</span>
+      <h2>Quatro conceitos<br>para esta conversa</h2>
+    </div>
+    <div class="slide-num">04 / 20</div>
+  </div>
+
+  <div class="grid-2-tight" style="margin-top:24px;">
+    <div class="card-dark">
+      <h3>Low-value care</h3>
+      <p style="color:var(--blue-100);">Intervenção que oferece pouco ou nenhum benefício — e que pode prejudicar. Consome recursos que faltam noutro lado.</p>
+    </div>
+    <div class="card-dark">
+      <h3>Prevenção quaternária</h3>
+      <p style="color:var(--blue-100);">Conjunto de ações que <em>evitam o dano</em> das próprias intervenções do sistema de saúde. Conceito-âncora da MGF (WONCA).</p>
+    </div>
+    <div class="card-dark">
+      <h3>Sobrediagnóstico</h3>
+      <p style="color:var(--blue-100);">Diagnóstico de uma condição que nunca causaria sintomas nem morte. Especialmente perigoso em rastreios em idosos.</p>
+    </div>
+    <div class="card-dark">
+      <h3>Cascata diagnóstica</h3>
+      <p style="color:var(--blue-100);">Um achado incidental ou falso positivo desencadeia mais exames, mais consultas, mais procedimentos — e mais ansiedade.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- SLIDE 5 — Transição CASO 1 -->
+<!-- ============================================================ -->
+<section class="transition-slide">
+  <div class="case-mega">CASO 01 · de 04</div>
+  <h1>A fadiga<br>e o <em>check-up</em>.</h1>
+  <p class="lede" style="color:var(--blue-300); max-width:32ch; margin-top:1em;">
+    Quando o cansaço se transforma num doseamento, e o doseamento numa terapêutica vitalícia.
+  </p>
+  <div style="position:absolute; bottom:48px; right:64px; font-family:'Fraunces',serif; font-size:6.4em; color:var(--orange-500); font-weight:900; opacity:.9;">919</div>
+</section>
+
+<!-- ============================================================ -->
+<!-- SLIDE 6 — Vit D: evidência consolidada -->
+<!-- ============================================================ -->
+<section>
+  <div class="slide-head">
+    <div>
+      <span class="eyebrow">Caso 01 · Evidência</span>
+      <h2>O que dizem<br>as guidelines</h2>
+    </div>
+    <div class="slide-num">06 / 20</div>
+  </div>
+
+  <table>
+    <thead>
+      <tr>
+        <th style="width:28%;">Fonte</th>
+        <th>Recomendação</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>DGS · NOC 004/2019</strong></td>
+        <td>Rastreio populacional <span class="em">não recomendado</span>. Doseamento apenas em grupos de risco definidos.</td>
+      </tr>
+      <tr>
+        <td><strong>Ordem dos Médicos<br>Choosing Wisely Portugal</strong></td>
+        <td>"Escolha <span class="em">não efetuar</span> rastreio populacional para o défice de 25-OH-Vitamina D."</td>
+      </tr>
+      <tr>
+        <td><strong>Endocrine Society 2024</strong></td>
+        <td>Recomenda <span class="em">contra</span> rastreio rotineiro em adultos saudáveis — qualquer idade. Suplementação empírica nalguns grupos sem necessidade de doseamento.</td>
+      </tr>
+      <tr>
+        <td><strong>USPSTF</strong></td>
+        <td>Evidência insuficiente para rastreio em adultos assintomáticos.</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="tip" style="margin-top:24px;">
+    <strong>Indicações legítimas:</strong> osteoporose · DRC · malabsorção · doença hepática crónica · hiperparatiroidismo · idoso institucionalizado · uso prolongado de anticonvulsivantes/corticoides.
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- SLIDE 7 — Vit D: ação prática -->
+<!-- ============================================================ -->
+<section>
+  <div class="slide-head">
+    <div>
+      <span class="eyebrow">Caso 01 · Ação</span>
+      <h2>O que podemos<br>fazer já amanhã</h2>
+    </div>
+    <div class="slide-num">07 / 20</div>
+  </div>
+
+  <div class="grid-2" style="height:auto; margin-top:16px;">
+    <div>
+      <h3 style="color:var(--orange-600);">A questão clínica real</h3>
+      <p style="font-size:1.1em; line-height:1.5;">
+        Antes de pedir vitamina D num utente com <span class="strike">fadiga</span>,
+        a pergunta certa é: <span class="navy">o que mais explica este cansaço?</span>
+      </p>
+      <ul style="margin-top:18px;">
+        <li>Sono · qualidade e duração</li>
+        <li>Humor · sintomas depressivos / ansiedade</li>
+        <li>Hemograma · TSH · glicémia · ferritina</li>
+        <li>Função renal e hepática</li>
+        <li>Sobrecarga psicossocial</li>
+      </ul>
+    </div>
+    <div class="card-orange">
+      <div class="mono small" style="opacity:.9; letter-spacing:.15em;">PROPOSTAS USF</div>
+      <ul class="num" style="margin-top:14px;">
+        <li style="color:white;"><strong>Smartphrase SClínico</strong> <code class="mono" style="background:rgba(255,255,255,.2); padding:1px 6px; border-radius:2px;">VitD_criterios</code> com checklist da NOC 004/2019</li>
+        <li style="color:white;"><strong>Intervalo mínimo 12 meses</strong> entre doseamentos no mesmo utente</li>
+        <li style="color:white;"><strong>Protocolo "fadiga inespecífica"</strong> antes de avançar para vitamina D</li>
+        <li style="color:white;"><strong>Sessão clínica</strong> de 30 min com dados próprios da USF</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- SLIDE 8 — Transição CASO 2 -->
+<!-- ============================================================ -->
+<section class="transition-slide">
+  <div class="case-mega">CASO 02 · de 04</div>
+  <h1>O exame que<br><em>não tranquiliza.</em></h1>
+  <p class="lede" style="color:var(--blue-300); max-width:34ch; margin-top:1em;">
+    Tranquilizar com palavras é mais eficaz do que tranquilizar com imagens.
+  </p>
+  <div style="position:absolute; bottom:48px; right:64px; font-family:'Fraunces',serif; font-size:6.4em; color:var(--orange-500); font-weight:900; opacity:.9;">279</div>
+</section>
+
+<!-- ============================================================ -->
+<!-- SLIDE 9 — Lombalgia: 6mSv -->
+<!-- ============================================================ -->
+<section>
+  <div class="slide-head">
+    <div>
+      <span class="eyebrow">Caso 02 · Evidência</span>
+      <h2>O que custa<br>uma TC lombar</h2>
+    </div>
+    <div class="slide-num">09 / 20</div>
+  </div>
+
+  <div class="grid-2-tight" style="margin-top:20px; align-items:center;">
+    <div>
+      <div class="kpi">
+        <div class="kpi-num">6<span style="font-size:.5em; color:var(--navy-900);"> mSv</span></div>
+        <div class="kpi-label">Dose efetiva — TC lombar</div>
+      </div>
+      <p style="font-size:1.05em; margin-top:24px; line-height:1.55;">
+        Equivalente a <span class="orange">2-3 anos</span> de radiação natural<br>
+        ou <span class="orange">~300 radiografias</span> de tórax.
+      </p>
+      <p class="small" style="margin-top:12px;">Não é trivial num adulto jovem.</p>
+    </div>
+    <div>
+      <h3 style="font-size:1.3em;">Mais radiação não é o único problema</h3>
+      <ul class="cross" style="margin-top:14px;">
+        <li><strong>Achados incidentais</strong> em &gt;50% dos adultos &gt;40a assintomáticos</li>
+        <li><strong>Cascata cirúrgica:</strong> imagem precoce associa-se a mais cirurgia sem melhor outcome</li>
+        <li><strong>Etiqueta diagnóstica</strong> ("hérnia", "degeneração") aumenta cinesiofobia</li>
+        <li><strong>Custo de oportunidade</strong> — TC desviada de quem precisa</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="tip" style="margin-top:24px; background:var(--blue-100); border-left-color:var(--blue-500);">
+    <strong style="color:var(--navy-700);">Recomendação Choosing Wisely Portugal:</strong> evitar exames de imagem da coluna nas primeiras <strong>4-6 semanas</strong> após o início da dor lombar axial inespecífica.
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- SLIDE 10 — Red Flags -->
+<!-- ============================================================ -->
+<section>
+  <div class="slide-head">
+    <div>
+      <span class="eyebrow">Caso 02 · Decisão</span>
+      <h2>Quando <em>devemos</em><br>pedir imagem</h2>
+    </div>
+    <div class="slide-num">10 / 20</div>
+  </div>
+
+  <div class="red-flags">
+    <div class="flag urgent">
+      <strong>🚨 Síndrome da cauda equina</strong>
+      Retenção urinária / incontinência nova · anestesia em sela · défice motor bilateral progressivo<br>
+      <em style="color:#991b1b;">→ Encaminhar ao SU. Não pedir TC no CSP.</em>
+    </div>
+    <div class="flag">
+      <strong>Suspeita de fratura</strong>
+      Trauma significativo · trauma minor em idoso, osteoporose, corticoterapia
+    </div>
+    <div class="flag">
+      <strong>Suspeita de neoplasia</strong>
+      Antec. oncológico · perda ponderal · dor noturna · sem melhoria 4-6 sem · &gt;50 anos atípico
+    </div>
+    <div class="flag">
+      <strong>Suspeita de infeção</strong>
+      Febre · imunossupressão · UDIV · cateter EV ou foco infecioso recente
+    </div>
+    <div class="flag">
+      <strong>Défice neurológico significativo</strong>
+      Défice motor progressivo · &gt;1 raiz envolvida · alterações sensitivas extensas
+    </div>
+    <div class="flag" style="border-left-color:var(--blue-500);">
+      <strong style="color:var(--blue-500);">Falha de tratamento conservador</strong>
+      Dor persistente &gt;6 semanas sem melhoria com tratamento adequado
+    </div>
+  </div>
+
+  <p class="small" style="margin-top:18px; font-size:.85em;">
+    <strong style="color:var(--navy-900);">Smartphrase proposta:</strong>
+    <code class="mono">Lombalgia_red_flags</code> — checklist negativa documentada substitui a "necessidade" do exame.
+  </p>
+</section>
+
+<!-- ============================================================ -->
+<!-- SLIDE 11 — Transição CASO 3 -->
+<!-- ============================================================ -->
+<section class="transition-slide">
+  <div class="case-mega">CASO 03 · de 04</div>
+  <h1>Mais não é<br><em>melhor.</em></h1>
+  <p class="lede" style="color:var(--blue-300); max-width:32ch; margin-top:1em;">
+    A FT4 a sombra de cada TSH. A maioria das vezes, ruído.
+  </p>
+  <div style="position:absolute; bottom:48px; right:64px; font-family:'Fraunces',serif; font-size:6.4em; color:var(--orange-500); font-weight:900; opacity:.9;">2.255</div>
+</section>
+
+<!-- ============================================================ -->
+<!-- SLIDE 12 — Rácio TSH/FT4 -->
+<!-- ============================================================ -->
+<section>
+  <div class="slide-head">
+    <div>
+      <span class="eyebrow">Caso 03 · Indicador</span>
+      <h2>O nosso rácio<br>diz tudo</h2>
+    </div>
+    <div class="slide-num">12 / 20</div>
+  </div>
+
+  <div class="ratio-viz" style="justify-content:center; margin:42px 0 28px;">
+    <div class="ratio-box bad">
+      <div class="big">1,8<span style="font-size:.45em;">:1</span></div>
+      <div class="lbl">USF · atual</div>
+    </div>
+    <div class="ratio-arrow">→</div>
+    <div class="ratio-box good">
+      <div class="big">3,7<span style="font-size:.45em;">:1</span></div>
+      <div class="lbl">Benchmark internacional<br>pós TSH-reflex</div>
+    </div>
+  </div>
+
+  <div class="bar-chart" style="margin-top:32px;">
+    <div class="bar-row">
+      <div class="bar-label">USF · atual</div>
+      <div class="bar-track"><div class="bar-fill" style="--bar-w:35%; width:35%;"></div></div>
+      <div class="bar-value">~35% TSH/FT4 adequado</div>
+    </div>
+    <div class="bar-row">
+      <div class="bar-label">Pós-reflexo (PLUGS)</div>
+      <div class="bar-track"><div class="bar-fill navy" style="--bar-w:74%; width:74%;"></div></div>
+      <div class="bar-value">~74% adequação</div>
+    </div>
+    <div class="bar-row">
+      <div class="bar-label">Meta USF · 12m</div>
+      <div class="bar-track"><div class="bar-fill blue" style="--bar-w:60%; width:60%;"></div></div>
+      <div class="bar-value">≥3:1 (60%)</div>
+    </div>
+  </div>
+
+  <p style="margin-top:26px; font-size:1.1em; line-height:1.5;">
+    <span class="orange">Mais de metade</span> dos doseamentos de FT4 que pedimos
+    <span class="navy">são supérfluos.</span>
+  </p>
+</section>
+
+<!-- ============================================================ -->
+<!-- SLIDE 13 — Algoritmo reflexo -->
+<!-- ============================================================ -->
+<section>
+  <div class="slide-head">
+    <div>
+      <span class="eyebrow">Caso 03 · Solução</span>
+      <h2>TSH reflex —<br>a intervenção que muda tudo</h2>
+    </div>
+    <div class="slide-num">13 / 20</div>
+  </div>
+
+  <div style="display:grid; grid-template-columns: 1fr; gap:18px; margin-top:24px;">
+    <div style="display:grid; grid-template-columns: 200px 1fr 200px 1fr 200px; gap:8px; align-items:center; padding:24px; background:white; border:1px solid var(--navy-700); border-radius:2px;">
+      <div style="background:var(--navy-900); color:white; padding:16px; border-radius:2px; text-align:center;">
+        <div style="font-family:'Fraunces',serif; font-size:1.8em; font-weight:800;">TSH</div>
+        <div class="mono" style="font-size:.65em; color:var(--blue-300); letter-spacing:.1em;">RASTREIO ÚNICO</div>
+      </div>
+      <div style="text-align:center; font-size:2em; color:var(--orange-500);">→</div>
+      <div style="background:var(--paper-2); padding:16px; border-radius:2px; text-align:center;">
+        <div style="font-family:'Fraunces',serif; font-size:1.4em; color:var(--navy-900); font-weight:700;">TSH normal?</div>
+      </div>
+      <div style="text-align:center; font-size:2em; color:var(--orange-500);">→</div>
+      <div style="background:#dcfce7; padding:16px; border-radius:2px; text-align:center;">
+        <div style="font-family:'Fraunces',serif; font-size:1.3em; color:#166534; font-weight:700;">PARAR</div>
+        <div class="mono" style="font-size:.65em; color:#166534; letter-spacing:.1em; margin-top:4px;">EUTIROIDEU</div>
+      </div>
+    </div>
+
+    <div style="display:grid; grid-template-columns: 200px 1fr 200px 1fr 200px; gap:8px; align-items:center; padding:24px; background:white; border:1px solid var(--navy-700); border-radius:2px;">
+      <div style="background:var(--navy-900); color:white; padding:16px; border-radius:2px; text-align:center; opacity:.4;">
+        <div style="font-family:'Fraunces',serif; font-size:1.8em; font-weight:800;">TSH</div>
+      </div>
+      <div style="text-align:center; font-size:2em; color:var(--orange-500);">→</div>
+      <div style="background:var(--orange-100); padding:16px; border-radius:2px; text-align:center;">
+        <div style="font-family:'Fraunces',serif; font-size:1.3em; color:var(--orange-700); font-weight:700;">TSH alterada</div>
+        <div class="mono" style="font-size:.6em; color:var(--orange-700); margin-top:2px;">&lt;0.3 ou &gt;4-5 mU/L</div>
+      </div>
+      <div style="text-align:center; font-size:2em; color:var(--orange-500);">→</div>
+      <div style="background:var(--orange-500); color:white; padding:16px; border-radius:2px; text-align:center;">
+        <div style="font-family:'Fraunces',serif; font-size:1.3em; font-weight:700;">FT4 reflexo</div>
+        <div class="mono" style="font-size:.6em; opacity:.85; margin-top:4px; letter-spacing:.1em;">MESMA AMOSTRA</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="tip" style="margin-top:28px;">
+    <strong>Negociar com o laboratório</strong> a implementação de TSH reflex — uma única intervenção técnica que resolve o problema sem depender da memória individual de cada clínico. <strong>Não é restrição: é automatização do bom critério.</strong>
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- SLIDE 14 — Transição CASO 4 -->
+<!-- ============================================================ -->
+<section class="transition-slide">
+  <div class="case-mega">CASO 04 · de 04</div>
+  <h1>O PSA aos<br><em>oitenta anos.</em></h1>
+  <p class="lede" style="color:var(--blue-300); max-width:34ch; margin-top:1em;">
+    Quando o rastreio deixa de prevenir e começa a magoar.
+  </p>
+  <div style="position:absolute; bottom:48px; right:64px; font-family:'Fraunces',serif; font-size:6.4em; color:var(--orange-500); font-weight:900; opacity:.9;">1.446</div>
+</section>
+
+<!-- ============================================================ -->
+<!-- SLIDE 15 — PSA: a matemática -->
+<!-- ============================================================ -->
+<section>
+  <div class="slide-head">
+    <div>
+      <span class="eyebrow">Caso 04 · Números</span>
+      <h2>Por cada 1.000 homens<br>rastreados 13 anos</h2>
+    </div>
+    <div class="slide-num">15 / 20</div>
+  </div>
+
+  <div style="display:grid; grid-template-columns: 1fr 1fr; gap:32px; margin-top:24px;">
+    <div>
+      <div style="background:#dcfce7; border-left:5px solid #16a34a; padding:20px 24px; border-radius:2px;">
+        <div class="mono small" style="color:#166534; font-weight:600; letter-spacing:.12em;">GANHOS</div>
+        <div style="display:flex; gap:16px; margin-top:8px;">
+          <div style="font-family:'Fraunces',serif; font-size:3.2em; font-weight:900; color:#166534; line-height:.9;">1,3</div>
+          <div style="font-size:.95em; line-height:1.4; align-self:center; color:#166534;">mortes por cancro<br>da próstata evitadas</div>
+        </div>
+        <div style="display:flex; gap:16px; margin-top:12px;">
+          <div style="font-family:'Fraunces',serif; font-size:3.2em; font-weight:900; color:#166534; line-height:.9;">3</div>
+          <div style="font-size:.95em; line-height:1.4; align-self:center; color:#166534;">casos de doença<br>metastática evitados</div>
+        </div>
+      </div>
+    </div>
+    <div>
+      <div style="background:#fef2f2; border-left:5px solid #dc2626; padding:20px 24px; border-radius:2px;">
+        <div class="mono small" style="color:#991b1b; font-weight:600; letter-spacing:.12em;">DANOS</div>
+        <ul style="margin-top:8px; color:#7f1d1d;">
+          <li style="margin-bottom:8px;"><strong>Múltiplos falsos positivos</strong></li>
+          <li style="margin-bottom:8px;"><strong>Biópsias</strong> · infeção, hemorragia, dor</li>
+          <li style="margin-bottom:8px;"><strong>Sobrediagnóstico</strong> de doença indolente</li>
+          <li style="margin-bottom:8px;"><strong>1 em 5</strong> com incontinência urinária permanente após PR</li>
+          <li><strong>2 em 3</strong> com disfunção erétil permanente</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="tip" style="margin-top:26px;">
+    <strong>USPSTF:</strong> ≥70 anos · grau D (recomenda <em>contra</em>). · &nbsp;<strong>EAU 2024:</strong> contra rastreio sistemático não solicitado. · &nbsp;<strong>Choosing Wisely:</strong> não fazer se esperança de vida &lt;10 anos.
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- SLIDE 16 — Decisão partilhada -->
+<!-- ============================================================ -->
+<section>
+  <div class="slide-head">
+    <div>
+      <span class="eyebrow">Caso 04 · Postura</span>
+      <h2>A decisão não é nossa.<br>Mas o registo é.</h2>
+    </div>
+    <div class="slide-num">16 / 20</div>
+  </div>
+
+  <div class="pull-quote" style="margin-top:36px; font-size:2em;">
+    A decisão partilhada <span class="accent">não é um documento legal.</span><br>
+    É um momento clínico — e o seu registo no SClínico <span class="accent">vale tanto como o exame.</span>
+  </div>
+
+  <div class="card-orange" style="margin-top:36px;">
+    <div class="mono small" style="color:#fff; opacity:.95; letter-spacing:.15em; margin-bottom:10px; font-weight:700;">SMARTPHRASE · PSA_decisao_partilhada</div>
+    <p style="color:white; font-size:.95em; line-height:1.6;">
+      Idade: __ &nbsp;|&nbsp; Esperança vida estimada: __ &nbsp;|&nbsp; Comorbilidades major: __ <br>
+      Discutidos benefícios e potenciais danos do rastreio (sobrediagnóstico, biópsia, sequelas).<br>
+      Decisão do utente: <strong style="background:rgba(255,255,255,.18); padding:2px 8px; border-radius:2px;">[ ] sim &nbsp; [ ] não &nbsp; [ ] adiada</strong> &nbsp;|&nbsp; Reavaliação: __
+    </p>
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- SLIDE 17 — O que funciona -->
+<!-- ============================================================ -->
+<section>
+  <div class="slide-head">
+    <div>
+      <span class="eyebrow">Síntese da evidência · BMJ Medicine 2025</span>
+      <h2>O que funciona<br>(e o que não funciona)</h2>
+    </div>
+    <div class="slide-num">17 / 20</div>
+  </div>
+
+  <div style="display:grid; grid-template-columns: 1fr 1fr; gap:36px; margin-top:18px; height:calc(100% - 130px);">
+    <div>
+      <h3 style="color:#dc2626; font-size:1.3em;">✗ Não chega</h3>
+      <ul class="cross" style="margin-top:14px;">
+        <li>Distribuir um PDF de guideline</li>
+        <li>Uma sessão clínica única</li>
+        <li>Restrição administrativa sem explicação</li>
+        <li>Apelar à boa vontade individual</li>
+        <li>Comparar com benchmarks externos sem dados próprios</li>
+      </ul>
+    </div>
+    <div>
+      <h3 style="color:#16a34a; font-size:1.3em;">✓ Funciona</h3>
+      <ul class="check" style="margin-top:14px;">
+        <li><strong>Educação + audit & feedback</strong> &nbsp;<span class="mono small" style="color:var(--orange-600);">OR 0,73 [0,63–0,84]</span></li>
+        <li>Dashboard individual (anonimizado em grupo)</li>
+        <li>Smartphrases e suporte à decisão no SClínico</li>
+        <li>Materiais escritos para o utente</li>
+        <li>Cultura: discussão, não punição</li>
+      </ul>
+    </div>
+  </div>
+
+  <p class="small" style="position:absolute; bottom:48px; left:64px; right:64px;">
+    Revisão sistemática · 140 RCT · cuidados primários · des-implementação de low-value care. Resultado consistente: <span class="navy">intervenções multicomponente superam intervenções isoladas</span>.
+  </p>
+</section>
+
+<!-- ============================================================ -->
+<!-- SLIDE 18 — Roadmap 10 passos -->
+<!-- ============================================================ -->
+<section>
+  <div class="slide-head">
+    <div>
+      <span class="eyebrow">Plano · 12 meses</span>
+      <h2>O nosso percurso<br>em 10 passos</h2>
+    </div>
+    <div class="slide-num">18 / 20</div>
+  </div>
+
+  <div class="steps">
+    <div class="step"><div class="step-num">01</div><div class="step-title">Diagnóstico interno</div><div class="step-desc">4-6 semanas. Mapear pedidos por médico.</div></div>
+    <div class="step"><div class="step-num">02</div><div class="step-title">Priorização</div><div class="step-desc">Selecionar 3-5 exames-alvo.</div></div>
+    <div class="step"><div class="step-num">03</div><div class="step-title">Critérios de adequação</div><div class="step-desc">1 página por exame com indicações.</div></div>
+    <div class="step"><div class="step-num">04</div><div class="step-title">Smartphrases SClínico</div><div class="step-desc">Operacionalizar nos templates.</div></div>
+    <div class="step"><div class="step-num">05</div><div class="step-title">Materiais utente</div><div class="step-desc">Folhetos A5 para a consulta.</div></div>
+  </div>
+  <div class="steps" style="margin-top:14px;">
+    <div class="step"><div class="step-num">06</div><div class="step-title">Sessão clínica</div><div class="step-desc">Lançamento com dados próprios.</div></div>
+    <div class="step"><div class="step-num">07</div><div class="step-title">Audit & feedback</div><div class="step-desc">Dashboard trimestral por médico.</div></div>
+    <div class="step"><div class="step-num">08</div><div class="step-title">Caso clínico mensal</div><div class="step-desc">15 min · discussão construtiva.</div></div>
+    <div class="step"><div class="step-num">09</div><div class="step-title">Avaliação 6 e 12m</div><div class="step-desc">Comparar indicadores baseline.</div></div>
+    <div class="step" style="border:2px solid var(--orange-500); background:var(--orange-100);"><div class="step-num">10</div><div class="step-title">Ciclo seguinte</div><div class="step-desc">Manter alvos · acrescentar 2-3 novos.</div></div>
+  </div>
+
+  <div class="tip" style="margin-top:24px;">
+    <strong>Recomendação tática:</strong> começar pela <span class="navy">TSH/FT4</span>. Argumento numérico imediato (1,8 → 3,7) + intervenção técnica (reflexo laboratorial) faz quase todo o trabalho. Vitória precoce que legitima os ciclos seguintes.
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- SLIDE 19 — Indicadores -->
+<!-- ============================================================ -->
+<section>
+  <div class="slide-head">
+    <div>
+      <span class="eyebrow">Painel · monitorização trimestral</span>
+      <h2>Como vamos<br>medir o progresso</h2>
+    </div>
+    <div class="slide-num">19 / 20</div>
+  </div>
+
+  <table style="margin-top:16px;">
+    <thead>
+      <tr>
+        <th style="width:35%;">Indicador</th>
+        <th>Fórmula</th>
+        <th style="width:25%;">Meta · 12 meses</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>Vit D por 1.000 utentes</strong></td>
+        <td>nº doseamentos 25(OH)D / nº utentes × 1000</td>
+        <td><span class="em">↓ ≥ 30%</span> face baseline</td>
+      </tr>
+      <tr>
+        <td><strong>TC lombar com red flag documentada</strong></td>
+        <td>com checklist preenchido / total TC lombar</td>
+        <td><span class="em">&gt; 90%</span></td>
+      </tr>
+      <tr>
+        <td><strong>Rácio TSH / FT4</strong></td>
+        <td>nº TSH / nº FT4</td>
+        <td><span class="em">≥ 3:1</span> (final 4:1)</td>
+      </tr>
+      <tr>
+        <td><strong>PSA com decisão partilhada</strong></td>
+        <td>PSA &gt;50a com registo / total PSA &gt;50a</td>
+        <td><span class="em">&gt; 80%</span></td>
+      </tr>
+      <tr>
+        <td><strong>PSA em homens &gt; 75 anos</strong></td>
+        <td>PSA &gt;75a sem antec. onco / total &gt;75a</td>
+        <td><span class="em">↓ ≥ 50%</span></td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="tip" style="margin-top:22px; background:var(--blue-100); border-left-color:var(--blue-500);">
+    <strong style="color:var(--navy-700);">Princípio:</strong> dados individuais visíveis ao próprio médico, agregados anónimos visíveis ao grupo, <strong>nunca</strong> para avaliação punitiva. Transparência baseada em confiança.
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- SLIDE 20 — Closing -->
+<!-- ============================================================ -->
+<section class="closing">
+  <div style="position:relative; z-index:2;">
+    <div class="mono small" style="color:var(--orange-400); letter-spacing:.2em; margin-bottom:1em;">PARA TERMINAR</div>
+    <h1 style="max-width:18ch;">A decisão certa<br>deve ser a<br><em>decisão fácil.</em></h1>
+    <p style="font-size:1.4em; color:var(--blue-100); max-width:38ch; margin-top:1em; line-height:1.4;">
+      Mudar não exige heroísmo individual.<br>
+      Exige um sistema onde fazer bem seja o caminho de menor resistência.
+    </p>
+    <div class="sig">
+      USF · Coordenação Clínica &nbsp;·&nbsp; Sessão Clínica 2026<br>
+      <span style="color:var(--orange-400); margin-top:4px; display:inline-block;">Próxima sessão: revisão do baseline e seleção dos primeiros 3 alvos</span>
+    </div>
+  </div>
+</section>
+
+</div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/dist/reveal.js"></script>
+<script>
+  Reveal.initialize({
+    hash: true,
+    slideNumber: false,
+    controls: true,
+    progress: true,
+    transition: 'slide',
+    transitionSpeed: 'default',
+    backgroundTransition: 'fade',
+    width: 1280,
+    height: 800,
+    margin: 0.04,
+    minScale: 0.2,
+    maxScale: 2.0,
+  });
+
+  // Animar barras quando o slide entra em vista
+  Reveal.on('slidechanged', event => {
+    const bars = event.currentSlide.querySelectorAll('.bar-fill');
+    bars.forEach(bar => {
+      const w = bar.style.getPropertyValue('--bar-w');
+      bar.style.width = '0%';
+      requestAnimationFrame(() => {
+        setTimeout(() => { bar.style.width = w; }, 100);
+      });
+    });
+  });
+</script>
+
+</body>
+</html>
